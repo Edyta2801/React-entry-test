@@ -1,12 +1,15 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 
 export class Footer extends Component {
   render() {
     return (
-      <div>
-        <h2>Footer</h2>
-      </div>
+      <Container/>
     );
   }
 }
+const Container = styled.footer`
+height:5rem;
+background:var(--clr-green);;
+`;
 export default Footer;

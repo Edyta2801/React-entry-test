@@ -8,6 +8,7 @@
   --clr-hover-color: #eeeeee;
   --ctrl-box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
   --ctrl-box-shadow-rounded: 0px 0px 35px 5px rgba(168, 172, 176, 0.19);
+  --transition: all 0.3s linear;
 }
 
 *,
@@ -32,4 +33,20 @@ ul {
 
 a {
   text-decoration: none;
+}
+
+.main {
+  max-width: 85vw;
+  margin: auto;
+  margin-top: 2rem;
+}
+
+@media screen and (min-width: 768px) {
+  .main {
+    max-width: 90vw;
+  }
+}
+
+.page {
+  min-height: calc(100vh - 12rem);
 }

@@ -1,12 +1,9 @@
 import React, { Component } from "react";
+import Products from "../components/Products";
 
 export class ProductsPage extends Component {
   render() {
-    return (
-      <div>
-        <h2>Products</h2>
-      </div>
-    );
+    return <Products />;
   }
 }
 export default ProductsPage;

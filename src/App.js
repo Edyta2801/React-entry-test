@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { getData, getCategory } from './utils/productsSlice';
+import { getData, getCategory, selectCurrency } from './utils/productsSlice';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navbar, CartOverlay, Footer, Products } from "./components";
 import { Cart, SingleProduct, Error } from "./Pages";
@@ -32,11 +32,14 @@ const mapStateToProps = (state) => ({
   categories: state.products.categories,
   products: state.products.productsList,
   currencies: state.products.currencies,
+  currentCategory:state.products.currentCategory,
+  selectedCurrency:state.products.selectedCurrency,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   getProducts: () => dispatch(getData()),
   getCategory: (category) => dispatch(getCategory(category)),
+  selectCurrency:(currency)=>dispatch(selectCurrency(currency))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

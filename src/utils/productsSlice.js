@@ -7,6 +7,7 @@ const initialState = {
   categories: [],
   productsList: [],
   currentCategory: "all",
+  selectedCurrency:'$',
   currencies: null,
   isLoading: true,
 };
@@ -21,6 +22,13 @@ const query = gql`
         name
         description
         brand
+        prices {
+          currency {
+            label
+            symbol
+          }
+          amount
+        }
       }
     }
     currencies {
@@ -51,6 +59,9 @@ const productsSlice = createSlice({
       );
       state.productsList = newproductsList.products;
     },
+    selectCurrency:(state, action)=>{
+      state.selectedCurrency=action.payload;
+    }
   },
 
   extraReducers: {
@@ -71,7 +82,7 @@ const productsSlice = createSlice({
       );
 
       state.productsList = newproductsList.products;
-      console.log("STATE:", state.products);
+      console.log("STATE:", state.productsList);
     },
 
     [getData.rejected]: (state, action) => {
@@ -83,6 +94,6 @@ const productsSlice = createSlice({
   },
 });
 
-export const { displayItems, getCategory } = productsSlice.actions;
+export const { displayItems, getCategory, selectCurrency } = productsSlice.actions;
 
 export default productsSlice.reducer;

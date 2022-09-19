@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { logo, down, up, basket } from "../assets";
-import device from "../brakpoints";
+
 
 export class Navbar extends Component {
   state = {
