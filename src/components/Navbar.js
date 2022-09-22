@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { logo, down, up, basket } from "../assets";
-
+import { Link } from "react-router-dom";
 
 export class Navbar extends Component {
   state = {
@@ -23,12 +23,14 @@ export class Navbar extends Component {
         <div className="nav-center">
           <ul className="nav-links">
             {this.props.categories.map((category) => (
-              <li
-                key={category.name}
-                onClick={() => this.props.getCategory(category.name)}
-              >
-                {category.name}
-              </li>
+              <Link key={category.name} to={"/"}>
+                <li
+                  key={category.name}
+                  onClick={() => this.props.getCategory(category.name)}
+                >
+                  {category.name}
+                </li>
+              </Link>
             ))}
           </ul>
 
@@ -135,7 +137,7 @@ const NavContainer = styled.nav`
     box-shadow: var(--ctrl-box-shadow-rounded);
 
     p {
-      padding:4px 4px;
+      padding: 4px 4px;
       &:hover {
         background: var(--clr-hover-color);
       }

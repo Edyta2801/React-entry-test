@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import device from "../brakpoints";
 import { white_basket } from "../assets";
+import { Link } from "react-router-dom";
 
-export class Products extends Component {
+class Products extends Component {
   render() {
     return (
       <Wrapper className="main page">
@@ -16,21 +16,23 @@ export class Products extends Component {
             console.log(defaultPrice);
             console.log(product);
             return (
-              <div key={product.id} className="product">
-                <div className="img-container">
-                  <img src={product.gallery[0]} alt={product.name} />
-                </div>
-                <div className="info-container">
-                  <div className="basket">
-                    <img src={white_basket} alt="basket" />
+              <Link to={`/products/${product.id}`}>
+                <div key={product.id} className="product">
+                  <div className="img-container">
+                    <img src={product.gallery[0]} alt={product.name} />
                   </div>
-                  <span>{product.name}</span>
-                  <p className="product-price">
-                    {defaultPrice.currency.symbol}
-                    {defaultPrice.amount}
-                  </p>
-                </div>
-              </div>
+                  <div className="info-container">
+                    <div className="basket">
+                      <img src={white_basket} alt="basket" />
+                    </div>
+                    <span>{product.name}</span>
+                    <p className="product-price">
+                      {defaultPrice.currency.symbol}
+                      {defaultPrice.amount}
+                    </p>
+                  </div>
+                </div>{" "}
+              </Link>
             );
           })}
         </div>
@@ -43,9 +45,7 @@ const Wrapper = styled.section`
   .category-name {
     text-transform: capitalize;
     font-size: 28px;
-   
   }
-
   .product-items {
     width: 90vw;
     margin: 4rem auto;
@@ -58,7 +58,6 @@ const Wrapper = styled.section`
     place-items: center;
     gap: ;
   }
-
   .product {
     display: flex;
     max-width: 400px;
@@ -69,7 +68,6 @@ const Wrapper = styled.section`
       border-radius: 15px;
     }
   }
-
   .img-container {
     width: 350px;
     height: 350px;
@@ -80,12 +78,10 @@ const Wrapper = styled.section`
       object-fit: contain;
     }
   }
-
   .products-container h1 {
     padding: 2rem 0;
     text-transform: capitalize;
   }
-
   .info-container {
     position: relative;
     font-size: 18px;
@@ -94,11 +90,9 @@ const Wrapper = styled.section`
   .info-container p {
     padding: 0.5rem 0;
   }
-
   .product-price {
     font-weight: 500;
   }
-
   .basket {
     position: absolute;
     top: 40%;
