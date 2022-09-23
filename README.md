@@ -1,4 +1,60 @@
-# Getting Started with Create React App
+# React entry test assignment _in progress_ 
+> Practical tasks for Junior Developer<!-- If you have the project hosted somewhere, include the link here. -->
+
+## Table of Contents
+* [General Info](#general-information)
+* [Technologies Used](#technologies-used)
+* [Features](#features)
+* [Screenshots](#screenshots)
+* [Setup](#setup)
+* [Usage](#usage)
+* [Project Status](#project-status)
+* [Room for Improvement](#room-for-improvement)
+* [Acknowledgements](#acknowledgements)
+* [Contact](#contact)
+<!-- * [License](#license) -->
+
+
+## General Information
+- access to graphql API by URL:  http://localhost:4000
+- There should be a list with three categories.
+* All
+* Tech
+* Clothes
+All category comes from the API as well.
+- PLP - product listing page, a.k.a. category page
+- PDP - product description page, a.k.a. product page
+- Cart page + Cart overlay (minicart)
+- task should match the design from Figma
+<!-- You don't have to answer all the questions - just the ones relevant to your project. -->
+
+
+## Technologies Used
+- React (class components)
+- GraphQL
+- Redux Toolkit
+- CSS-in-JS (styled-components)
+- Figma
+
+
+## Features
+- Ability to add/remove products and change their amounts in cart - on the cart page itself, PLP and PDP should be provided.
+- For products that have various options (attributes) - the options should be selected.
+- The selected options of added to cart products should be visible in cart overlay and in cart page.
+- If an attribute is a swatch attribute (type = swatch), a representation of the value should be rendered on PDP and PLP, rather than text description (e.g. the color itself, not "Blue" or "0000FF")
+- Filtering products by category name for all of the categories from BE
+- The descriptions provided in HTML format should be parsed and presented as HTML, not as plain text
+- Ability to change the currency of the store to one of the available currencies
+
+## Screenshots
+![Example screenshot](./src/assets/drafts/Currency%20Switcher.png)
+![Example screenshot](./src/assets/drafts/PDP.png)
+![Example screenshot](./src/assets/drafts/Cart%20Overlay.png)
+![Example screenshot](./src/assets/drafts/Cart.png)
+<!-- If you have screenshots you'd like to share, include them here. -->
+
+
+## Setup
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
