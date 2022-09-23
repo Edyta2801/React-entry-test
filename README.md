@@ -1,5 +1,5 @@
 # React entry test assignment _in progress_ 
-> Practical tasks for Junior Developer<!-- If you have the project hosted somewhere, include the link here. -->
+> Practical recruitment task for Junior Developer position<!-- If you have the project hosted somewhere, include the link here. -->
 
 ## Table of Contents
 * [General Info](#general-information)
@@ -7,25 +7,15 @@
 * [Features](#features)
 * [Screenshots](#screenshots)
 * [Setup](#setup)
-* [Usage](#usage)
-* [Project Status](#project-status)
-* [Room for Improvement](#room-for-improvement)
-* [Acknowledgements](#acknowledgements)
-* [Contact](#contact)
 <!-- * [License](#license) -->
-
 
 ## General Information
 - access to graphql API by URL:  http://localhost:4000
-- There should be a list with three categories.
-* All
-* Tech
-* Clothes
-All category comes from the API as well.
+- There should be a list with three categories (All, Tech, Clothes). All category comes from the API as well.
 - PLP - product listing page, a.k.a. category page
 - PDP - product description page, a.k.a. product page
 - Cart page + Cart overlay (minicart)
-- task should match the design from Figma
+- Tasks should match the design from Figma
 <!-- You don't have to answer all the questions - just the ones relevant to your project. -->
 
 
@@ -52,7 +42,6 @@ All category comes from the API as well.
 ![Example screenshot](./src/assets/drafts/Cart%20Overlay.png)
 ![Example screenshot](./src/assets/drafts/Cart.png)
 <!-- If you have screenshots you'd like to share, include them here. -->
-
 
 ## Setup
 
