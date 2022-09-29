@@ -25,6 +25,7 @@ class Products extends Component {
                     <div className="basket">
                       <img src={white_basket} alt="basket" />
                     </div>
+                    <span>{product.brand}</span>
                     <span>{product.name}</span>
                     <p className="product-price">
                       {defaultPrice.currency.symbol}
@@ -46,6 +47,7 @@ const Wrapper = styled.section`
     text-transform: capitalize;
     font-size: 28px;
   }
+  
   .product-items {
     width: 90vw;
     margin: 4rem auto;
@@ -87,11 +89,17 @@ const Wrapper = styled.section`
     font-size: 18px;
     padding: 20px;
   }
+  .info-container span {
+    display:inline-box;
+    margin-right: 5px;
+    color:var(--clr-black);
+  }
   .info-container p {
     padding: 0.5rem 0;
   }
   .product-price {
     font-weight: 500;
+    color:var(--clr-black);
   }
   .basket {
     position: absolute;

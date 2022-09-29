@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { useParams } from "react-router";
 import { getSingleProductData } from "../utils/singleProductSlice";
+import ProductGalery from "./ProductGalery";
 
 function withParams(Component) {
   return (props) => <Component {...props} params={useParams()} />;
@@ -11,6 +12,7 @@ class SingleProduct extends Component {
   componentDidMount() {
     let { productId } = this.props.params;
     this.props.getSingleProductData(productId);
+    this.getDataRef = React.createRef(true);
   }
   render() {
     const {
@@ -27,14 +29,16 @@ class SingleProduct extends Component {
     return (
       <div>
         <p>SingleProduct</p>
-        <p>{brand}</p>
-        <div>{description}</div>
-        <div className="all-images-image">
+        <ProductGalery images={gallery} />
+
+        {/* <div className="all-images-image">
           {gallery &&
             gallery.map((picture, index) => (
               <img key={index} src={picture} alt="" />
             ))}
-        </div>
+        </div> */}
+        <p>{brand}</p>
+        <div>{description}</div>
       </div>
     );
   }
