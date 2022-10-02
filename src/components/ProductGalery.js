@@ -2,40 +2,58 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 class ProductGalery extends Component {
-  state = {
-    selectedImage: this.props.images[0],
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      images: [],
+      mainImage: "",
+    };
+  }
 
-  setMainImage = (imageUrl) => {
+  setImages = () => {
     this.setState({
-      selectedImage: imageUrl,
+      ...this.state,
+      images: this.props.images,
+      mainImage: this.props.images[0],
     });
   };
 
-  render() {
-    const { images } = this.props;
-    const { selectedImage } = this.state;
+  componentDidMount() {
+    this.setImages();
+  }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.images !== this.props.images) {
+      this.setImages();
+    }
+  }
+
+  imageClickHandler = (image) => {
+    this.setState({ ...this.state, mainImage: image });
+  };
+
+  render() {
+    const { mainImage, images } = this.state;
     return (
-      <Container>
+      <Container >
         <Thumbnails>
-          {images?.length > 1 &&
-            images.map((image, i) => (
-              <ThumbnailWrapper
-                key={i}
-                onClick={() => this.setMainImage(image)}
-              >
-                <Thumbnail src={image} />
-              </ThumbnailWrapper>
-            ))}
+          {images.map((image, i) => (
+            <ThumbnailWrapper
+              key={i}
+              onClick={() => this.imageClickHandler(image)}
+            >
+              <Thumbnail src={image} />
+            </ThumbnailWrapper>
+          ))}
         </Thumbnails>
         <BigImageWrapper>
-          <BigImage src={selectedImage} />
+          <BigImage src={mainImage} />
         </BigImageWrapper>
       </Container>
     );
   }
 }
+
 
 const Container = styled.div`
   flex: 3;
