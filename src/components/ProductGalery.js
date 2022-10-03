@@ -15,6 +15,7 @@ class ProductGalery extends Component {
       ...this.state,
       images: this.props.images,
       mainImage: this.props.images[0],
+     
     });
   };
 
@@ -30,12 +31,14 @@ class ProductGalery extends Component {
 
   imageClickHandler = (image) => {
     this.setState({ ...this.state, mainImage: image });
+    console.log(image)
   };
 
   render() {
     const { mainImage, images } = this.state;
+
     return (
-      <Container >
+      <Container>
         <Thumbnails>
           {images.map((image, i) => (
             <ThumbnailWrapper
@@ -48,12 +51,12 @@ class ProductGalery extends Component {
         </Thumbnails>
         <BigImageWrapper>
           <BigImage src={mainImage} />
+          {console.log(mainImage)}
         </BigImageWrapper>
       </Container>
     );
   }
 }
-
 
 const Container = styled.div`
   flex: 3;

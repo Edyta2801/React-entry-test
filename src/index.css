@@ -36,14 +36,15 @@ a {
 }
 
 .main {
-  max-width: 85vw;
-  margin: auto;
+  /* max-width: 85vw;
+  margin: auto; */
   margin-top: 2rem;
+  padding: 0 6rem;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 768px) {
   .main {
-    max-width: 90vw;
+     padding:0 2rem;
   }
 }
 

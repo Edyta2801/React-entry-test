@@ -9,14 +9,14 @@ class Products extends Component {
       <Wrapper className="main page">
         <h3 className="category-name">{this.props.currentCategory}</h3>
         <div className="product-items">
-          {this.props.products?.map((product) => {
+          {this.props.products?.map((product, i) => {
             const defaultPrice = product.prices.find(
               (price) => price.currency.symbol === this.props.selectedCurrency
             );
             console.log(defaultPrice);
             console.log(product);
             return (
-              <Link to={`/products/${product.id}`}>
+              <Link to={`/products/${product.id}`} key={i}>
                 <div key={product.id} className="product">
                   <div className="img-container">
                     <img src={product.gallery[0]} alt={product.name} />
@@ -47,7 +47,7 @@ const Wrapper = styled.section`
     text-transform: capitalize;
     font-size: 28px;
   }
-  
+
   .product-items {
     width: 90vw;
     margin: 4rem auto;
@@ -90,16 +90,16 @@ const Wrapper = styled.section`
     padding: 20px;
   }
   .info-container span {
-    display:inline-box;
+    display: inline-box;
     margin-right: 5px;
-    color:var(--clr-black);
+    color: var(--clr-black);
   }
   .info-container p {
     padding: 0.5rem 0;
   }
   .product-price {
     font-weight: 500;
-    color:var(--clr-black);
+    color: var(--clr-black);
   }
   .basket {
     position: absolute;

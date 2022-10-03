@@ -86,13 +86,18 @@ const NavContainer = styled.nav`
   height: 5rem;
   display: grid;
   align-items: center;
+  padding: 0 6rem;
+  @media (max-width: 768px) {
+    padding: 0 2rem;
+  }
   .nav-center {
-    width: 90%;
-    margin: 0 auto;
+    // width: 90%;
+    // margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr auto auto;
     align-items: center;
   }
+
   .nav-links {
     display: flex;
     li {
