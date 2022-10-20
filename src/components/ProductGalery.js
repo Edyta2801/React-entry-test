@@ -14,8 +14,7 @@ class ProductGalery extends Component {
     this.setState({
       ...this.state,
       images: this.props.images,
-      mainImage: this.props.images[0],
-     
+      mainImage: this.props.images[0] || [],
     });
   };
 
@@ -31,7 +30,8 @@ class ProductGalery extends Component {
 
   imageClickHandler = (image) => {
     this.setState({ ...this.state, mainImage: image });
-    console.log(image)
+
+    console.log(this.state);
   };
 
   render() {
