@@ -115,7 +115,7 @@ class SingleProduct extends Component {
       prices,
     } = this.props.productData;
 
-    const defaultPrice = prices?.find((price) => price.currency.symbol[0]);
+    const defaultPrice = prices?.find((price) => price.currency.symbol === this.props.selectedCurrency);
 
     return (
       <Wrapper className="main page">
@@ -273,6 +273,7 @@ const PriceInfo = styled.h2`
 const mapStateToProps = (state) => ({
   productData: state.singleProduct.productData,
   allAttributes: state.singleProduct.attributes,
+  selectedCurrency: state.products.selectedCurrency,
 });
 
 const mapDispatchToProps = (dispatch) => ({

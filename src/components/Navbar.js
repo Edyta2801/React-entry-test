@@ -1,11 +1,13 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import styled from "styled-components";
 import { logo, down, up, basket } from "../assets";
 import { Link } from "react-router-dom";
+import OutsideClickHandler from "./OutsideClickHandler";
+import { selectCurrency, getCategory } from "../utils/productsSlice";
 
 export class Navbar extends Component {
   state = {
-    active: "$",
     view: false,
   };
 
@@ -41,36 +43,45 @@ export class Navbar extends Component {
           </div>
 
           <div className="currencies-overlay">
-            <div className="currencies">
-              <div
-                className="currency-switcher"
-                onClick={() => this.setState({ view: !this.state.view })}
-              >
-                <p>{this.state.active}</p>
-                {this.state.view ? (
-                  <img src={up} alt="up" />
-                ) : (
-                  <img src={down} alt="down" />
-                )}
-              </div>
+            <OutsideClickHandler
+              onOutsideClick={() => {
+                this.setState({ view: false });
+              }}
+            >
+              <div className="currencies">
+                <div
+                  className="currency-switcher"
+                  onClick={() => this.setState({ view: !this.state.view })}
+                >
+                  <p>{this.props.selectedCurrency}</p>
 
-              <div
-                className={`currencies-options ${!this.state.view && "hidden"}`}
-              >
-                {this.props.currencies?.map((currency) => (
-                  <p
-                    key={currency.symbol}
-                    id={currency.symbol}
-                    onClick={(e) => {
-                      this.setState({ view: !this.state.view });
-                      this.setState({ active: e.target.id });
-                    }}
-                  >
-                    {currency.symbol + currency.label}
-                  </p>
-                ))}
+                  {this.state.view ? (
+                    <img src={up} alt="up" />
+                  ) : (
+                    <img src={down} alt="down" />
+                  )}
+                </div>
+
+                <div
+                  className={`currencies-options ${
+                    !this.state.view && "hidden"
+                  }`}
+                >
+                  {this.props.currencies?.map((currency) => (
+                    <p
+                      key={currency.symbol}
+                      id={currency.symbol}
+                      onClick={(e) => {
+                        this.setState({ view: !this.state.view });
+                        this.props.selectCurrency(currency.symbol);
+                      }}
+                    >
+                      {currency.symbol + currency.label}
+                    </p>
+                  ))}
+                </div>
               </div>
-            </div>
+            </OutsideClickHandler>
           </div>
 
           <div className="basket">
@@ -120,6 +131,7 @@ const NavContainer = styled.nav`
   }
   .currencies-overlay {
     position: relative;
+    cursor: pointer;
   }
   .currency-switcher {
     display: flex;
@@ -152,5 +164,15 @@ const NavContainer = styled.nav`
     padding-left: 1rem;
   }
 `;
+const mapStateToProps = (state) => ({
+  categories: state.products.categories,
+  currencies: state.products.currencies,
+  currentCategory: state.products.currentCategory,
+});
 
-export default Navbar;
+const mapDispatchToProps = (dispatch) => ({
+  getCategory: (category) => dispatch(getCategory(category)),
+  selectCurrency: (currency) => dispatch(selectCurrency(currency)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
