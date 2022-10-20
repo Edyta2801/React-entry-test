@@ -50,16 +50,28 @@ export const getSingleProductData = createAsyncThunk(
 
 const singleProductSlice = createSlice({
   name: "singleProduct",
-  initialState: { productData: [] },
-  reducers: {},
+  initialState: { productData: [], attributes: {} },
+  reducers: {
+    setAttributeValue: (state, action) => {
+      state.attributes[action.payload.name] = action.payload.value;
+    },
+  },
   extraReducers: {
     [getSingleProductData.fulfilled]: (state, action) => {
       state.productData = action.payload.product;
-      // return action.payload.product;
       console.log("ACTION:", action);
       console.log("STATE", state.productData);
+
+      const attrArr = {};
+      action.payload.product.attributes.map((attribute) => {
+        const { name, items } = attribute;
+        return (attrArr[name] = items[0].value);
+      });
+      state.attributes = attrArr;
     },
   },
 });
+
+export const { setAttributeValue } = singleProductSlice.actions;
 
 export default singleProductSlice.reducer;

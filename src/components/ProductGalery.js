@@ -14,7 +14,7 @@ class ProductGalery extends Component {
     this.setState({
       ...this.state,
       images: this.props.images,
-      mainImage: this.props.images[0] || [],
+      mainImage: this.props.images[0],
     });
   };
 
@@ -40,7 +40,7 @@ class ProductGalery extends Component {
     return (
       <Container>
         <Thumbnails>
-          {images.map((image, i) => (
+          {images && images.map((image, i) => (
             <ThumbnailWrapper
               key={i}
               onClick={() => this.imageClickHandler(image)}
