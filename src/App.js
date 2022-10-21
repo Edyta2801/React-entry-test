@@ -13,11 +13,14 @@ import {
   Products,
   SingleProduct,
 } from "./components";
-import { Cart, Error } from "./Pages";
+import { Error } from "./Pages";
+import Cart from './components/Cart';
+import { loadProducts } from './utils/cartSlice';
 
 export class App extends Component {
   async componentDidMount() {
     await this.props.getProducts();
+    await this.props.loadProducts(this.props.products);
   }
   render() {
     return (
@@ -48,6 +51,7 @@ const mapDispatchToProps = (dispatch) => ({
   getProducts: () => dispatch(getData()),
   getCategory: (category) => dispatch(getCategory(category)),
   selectCurrency: (currency) => dispatch(selectCurrency(currency)),
+  loadProducts: (products) => dispatch(loadProducts(products)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -51,7 +51,7 @@ const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    displayItems: (state, action) => {},
+    // displayItems: (state, action) => {},
     getCategory: (state, action) => {
       state.currentCategory = action.payload;
       const newproductsList = state.categories.find(
@@ -94,6 +94,8 @@ const productsSlice = createSlice({
   },
 });
 
-export const { displayItems, getCategory, selectCurrency } = productsSlice.actions;
+export const { 
+  // displayItems,
+   getCategory, selectCurrency } = productsSlice.actions;
 
 export default productsSlice.reducer;

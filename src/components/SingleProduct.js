@@ -8,6 +8,8 @@ import {
 import ProductGalery from "./ProductGalery";
 import parse from "html-react-parser";
 import styled from "styled-components";
+import { addItem } from "../utils/cartSlice";
+import { Link } from "react-router-dom";
 
 function withParams(Component) {
   return (props) => <Component {...props} params={useParams()} />;
@@ -115,10 +117,13 @@ class SingleProduct extends Component {
       prices,
     } = this.props.productData;
 
-    const defaultPrice = prices?.find((price) => price.currency.symbol === this.props.selectedCurrency);
+    const defaultPrice = prices?.find(
+      (price) => price.currency.symbol === this.props.selectedCurrency
+    );
 
     return (
       <Wrapper className="main page">
+        <Link to="/cart">Go to cart</Link>
         <Container>
           <ProductGalery images={gallery} />
           <Description>
@@ -134,7 +139,8 @@ class SingleProduct extends Component {
             <Button
               disabled={!inStock}
               onClick={() => {
-                this.addItemClick();
+                this.props.addItem(id);
+                // this.addItemClick();
               }}
               className="add-btn"
             >
@@ -280,7 +286,10 @@ const mapDispatchToProps = (dispatch) => ({
   getSingleProductData: (id) => dispatch(getSingleProductData(id)),
   setAttributeValue: (name, value) =>
     dispatch(setAttributeValue({ name, value })),
+  addItem: (id) => dispatch(addItem({ id })),
 });
+
+export const SingleProductNew = new SingleProduct();
 
 export default withParams(
   connect(mapStateToProps, mapDispatchToProps)(SingleProduct)
