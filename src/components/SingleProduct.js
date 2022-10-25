@@ -32,8 +32,29 @@ class SingleProduct extends Component {
   componentWillUnmount() {
     this.getDataRef.current = true;
   }
+  addItemClick() {
+    const { id } = this.props.productData;
+    const choosenAttributes = this.props.allAttributes;
+    const selectedItem = this.props.cartItems.find(
+      (cartItem) => cartItem.id === id
+    );
 
-  addItemClick() {}
+    if (selectedItem) {
+      const attributeExists = selectedItem.items.find(
+        (item) =>
+          JSON.stringify(item.choosenAttributes) ===
+          JSON.stringify(choosenAttributes)
+      );
+
+      if (attributeExists) {
+        return;
+      } else {
+        this.props.addItem(id, choosenAttributes);
+      }
+    } else {
+      this.props.addItem(id, choosenAttributes);
+    }
+  }
   ProductAttribute(props) {
     const { name, type, items } = props.attribute;
     let defaultValue;
@@ -139,8 +160,8 @@ class SingleProduct extends Component {
             <Button
               disabled={!inStock}
               onClick={() => {
-                this.props.addItem(id);
-                // this.addItemClick();
+                // this.props.addItem(id);
+                this.addItemClick();
               }}
               className="add-btn"
             >
@@ -280,13 +301,15 @@ const mapStateToProps = (state) => ({
   productData: state.singleProduct.productData,
   allAttributes: state.singleProduct.attributes,
   selectedCurrency: state.products.selectedCurrency,
+  cartItems: state.cart.cartItems,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   getSingleProductData: (id) => dispatch(getSingleProductData(id)),
   setAttributeValue: (name, value) =>
     dispatch(setAttributeValue({ name, value })),
-  addItem: (id) => dispatch(addItem({ id })),
+  addItem: (id, selectedAttributes) =>
+    dispatch(addItem({ id, selectedAttributes })),
 });
 
 export const SingleProductNew = new SingleProduct();
