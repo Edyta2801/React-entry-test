@@ -1,8 +1,18 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 import { setAttributeValue } from "../utils/singleProductSlice";
 
 class ProductAttribute extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: [],
+    };
+
+    this.setAttributeValue = this.setAttributeValue.bind(this);
+  }
+
   render() {
     const { name, type, items } = this.props.attribute;
     let defaultValue;
@@ -93,5 +103,24 @@ const Attribute = styled.div`
     }
   }
 `;
+
+// const mapStateToProps = (state) => ({
+//   productData: state.singleProduct.productData,
+//   allAttributes: state.singleProduct.attributes,
+//   cartItems: state.cart.cartItems,
+//   currencyInUse: state.products.currencyInUse,
+// });
+
+// const mapDispatchToProps = (dispatch) => ({
+//   // getSingleProductData: (id) => dispatch(getSingleProductData(id)),
+//   setAttributeValue: (name, value) =>
+//     dispatch(setAttributeValue({ name, value })),
+//   // addItem: (id, selectedAttributes) =>
+//   //   dispatch(addItem({ id, selectedAttributes })),
+// });
+
+// export default (
+//   connect(mapStateToProps, mapDispatchToProps)(ProductAttribute)
+// );
 
 export default ProductAttribute;

@@ -40,14 +40,15 @@ class ProductGalery extends Component {
     return (
       <Container>
         <Thumbnails>
-          {images && images.map((image, i) => (
-            <ThumbnailWrapper
-              key={i}
-              onClick={() => this.imageClickHandler(image)}
-            >
-              <Thumbnail src={image} />
-            </ThumbnailWrapper>
-          ))}
+          {images &&
+            images.map((image, i) => (
+              <ThumbnailWrapper
+                key={i}
+                onClick={() => this.imageClickHandler(image)}
+              >
+                <Thumbnail src={image} />
+              </ThumbnailWrapper>
+            ))}
         </Thumbnails>
         <BigImageWrapper>
           <BigImage src={mainImage} />
